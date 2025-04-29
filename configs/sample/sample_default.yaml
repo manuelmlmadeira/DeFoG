@@ -1,0 +1,13 @@
+# balanced rate matrice settings
+eta: 0.
+omega: 0.
+
+# generation settings
+sample_steps: 1000
+time_distortion: "identity"     # 'uniform', 'cosine', polyinc, polydec
+search: False           # 'all' | 'target_guidance' | 'distortion' | 'stochasticity' | False
+
+# fixed
+rdb: 'general'            # general | column | entry
+rdb_crit: dummy           # max_marginal | x_t | p_x1_g_xt | x_1 | p_xt_g_x1 | p_xtdt_g_xt | x_0 | xhat_t
+                          # abs_state
