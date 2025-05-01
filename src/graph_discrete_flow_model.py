@@ -242,7 +242,9 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         else:
             print("Starting to sample")
             samples, labels = self.sample(
-                is_test=True, save_samples=self.cfg.general.save_samples
+                is_test=True,
+                save_samples=self.cfg.general.save_samples,
+                save_visualization=True,
             )
             to_log = self.evaluate_samples(samples=samples, labels=labels, is_test=True)
 

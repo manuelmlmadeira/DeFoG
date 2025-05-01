@@ -464,6 +464,7 @@ class CellGraph(nx.Graph):
         no_edges=False,
         fontsize=12,
         verbose=True,
+        time=None,
     ):
         node_colors = [
             self.map_phenotype_to_color[phenotype]
@@ -487,7 +488,6 @@ class CellGraph(nx.Graph):
             edgecolors="k" if black_border else None,
         )
         if not no_edges:
-            "here"
             nx.draw_networkx_edges(
                 self,
                 pos=positions,
@@ -497,9 +497,6 @@ class CellGraph(nx.Graph):
 
         # Create a legend
         if has_legend:
-            # Set LaTeX as the text renderer
-            rc("text", usetex=True)
-            rc("font", size=fontsize)
             legend_labels = list(self.map_phenotype_to_color.keys())
             legend_handles = [
                 plt.Line2D(
@@ -519,6 +516,17 @@ class CellGraph(nx.Graph):
                 loc="upper center",
                 bbox_to_anchor=(0.5, 1.20),
                 ncol=len(legend_labels) / 3,
+            )
+
+        if time is not None:
+            plt.text(
+                0.5,
+                0.05,  # place below the graph
+                f"t = {time:.2f}",
+                ha="center",
+                va="center",
+                transform=plt.gcf().transFigure,
+                fontsize=16,
             )
 
         plt.axis("off")  # delete black square around

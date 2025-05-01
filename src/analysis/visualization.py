@@ -181,7 +181,14 @@ class NonMolecularVisualization:
         return graph
 
     def visualize_non_molecule(
-        self, graph, pos, path, iterations=100, node_size=100, largest_component=False
+        self,
+        graph,
+        pos,
+        path,
+        iterations=100,
+        node_size=100,
+        largest_component=False,
+        time=None,
     ):
         if largest_component:
             CGs = [graph.subgraph(c) for c in nx.connected_components(graph)]
@@ -211,6 +218,16 @@ class NonMolecularVisualization:
             vmax=vmax,
             edge_color="grey",
         )
+        if time is not None:
+            plt.text(
+                0.5,
+                0.05,  # place below the graph
+                f"t = {time:.2f}",
+                ha="center",
+                va="center",
+                transform=plt.gcf().transFigure,
+                fontsize=16,
+            )
 
         plt.tight_layout()
         plt.savefig(path)
@@ -229,7 +246,7 @@ class NonMolecularVisualization:
 
             if self.is_tls:
                 cg = CellGraph.from_dense_graph(graphs[i])
-                cg.plot_graph(save_path=file_path, has_legend=False)
+                cg.plot_graph(save_path=file_path, has_legend=True)
             else:
                 graph = self.to_networkx(graphs[i][0].numpy(), graphs[i][1].numpy())
                 self.visualize_non_molecule(graph=graph, pos=None, path=file_path)
@@ -263,11 +280,17 @@ class NonMolecularVisualization:
                 if not graphs[frame].get_pos():  # The last one already has a pos
                     graphs[frame].set_pos(pos=final_pos)
                 graphs[frame].plot_graph(
-                    save_path=file_name, has_legend=False, verbose=False
+                    save_path=file_name,
+                    has_legend=False,
+                    verbose=False,
+                    time=times[frame],
                 )
             else:
                 self.visualize_non_molecule(
-                    graph=graphs[frame], pos=final_pos, path=file_name
+                    graph=graphs[frame],
+                    pos=final_pos,
+                    path=file_name,
+                    time=times[frame],
                 )
             save_paths.append(file_name)
 
