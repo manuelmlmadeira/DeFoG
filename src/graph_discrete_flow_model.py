@@ -236,8 +236,9 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         return
 
     def on_test_epoch_end(self) -> None:
-        print("sampling optimization")
+
         if self.cfg.sample.search:
+            print("Starting sampling optimization...")
             self.search_hyperparameters()
         else:
             print("Starting to sample")
@@ -513,14 +514,14 @@ class GraphDiscreteFlowModel(pl.LightningModule):
 
         # Init chain storing variables
         assert (E == torch.transpose(E, 1, 2)).all()
-        chain_X_size = torch.Size((number_chain_steps, keep_chain, X.size(1)))
+        chain_X_size = torch.Size((number_chain_steps + 1, keep_chain, X.size(1)))
         chain_E_size = torch.Size(
-            (number_chain_steps, keep_chain, E.size(1), E.size(2))
+            (number_chain_steps + 1, keep_chain, E.size(1), E.size(2))
         )
         chain_X = torch.zeros(chain_X_size)
         chain_E = torch.zeros(chain_E_size)
-        chain_times = torch.zeros((number_chain_steps, keep_chain))
-        chain_time_unit = 1 / (number_chain_steps - 1)
+        chain_times = torch.zeros((number_chain_steps + 1, keep_chain))
+        chain_time_unit = 1 / number_chain_steps
 
         # Store initial graph
         if keep_chain > 0:
@@ -532,13 +533,16 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         for t_int in tqdm(range(0, self.cfg.sample.sample_steps)):
             # this state
             t_array = t_int * torch.ones((batch_size, 1)).type_as(y)
-            t_norm = t_array / self.cfg.sample.sample_steps
+            t_norm = t_array / (self.cfg.sample.sample_steps + 1)
             if ("absorb" in self.cfg.model.transition) and (t_int == 0):
                 # to avoid failure mode of absorbing transition, add epsilon
                 t_norm = t_norm + 1e-6
             # next state
             s_array = t_array + 1
-            s_norm = s_array / self.cfg.sample.sample_steps
+            s_norm = s_array / (self.cfg.sample.sample_steps + 1)
+
+            # using round for precision
+            write_index = int(np.ceil(np.round(s_norm[0].item() / chain_time_unit, 6)))
 
             # Distort time
             t_norm = self.time_distorter.sample_ft(
@@ -561,8 +565,6 @@ class GraphDiscreteFlowModel(pl.LightningModule):
             X, E, y = sampled_s.X, sampled_s.E, sampled_s.y
 
             # Save the first keep_chain graphs
-            # using round for precision
-            write_index = int(np.ceil(np.round(s_norm[0].item() / chain_time_unit, 6)))
             chain_X[write_index] = discrete_sampled_s.X[:keep_chain]
             chain_E[write_index] = discrete_sampled_s.E[:keep_chain]
             chain_times[write_index] = s_norm.flatten()[:keep_chain]
@@ -580,7 +582,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
             chain_times = torch.cat(
                 [chain_times, chain_times[-1:].repeat(10, 1)], dim=0
             )
-            assert chain_X.size(0) == (number_chain_steps + 10)
+            assert chain_X.size(0) == (number_chain_steps + 1 + 10)
 
         X, E, y = self.noise_dist.ignore_virtual_classes(X, E, y)
         chain_X, chain_E, _ = self.noise_dist.ignore_virtual_classes(
