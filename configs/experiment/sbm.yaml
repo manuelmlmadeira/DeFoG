@@ -23,7 +23,7 @@ sample:
     omega: 0
     eta: 0
 model:
-    transition: 'absorbing'
+    transition: 'absorbfirst'
     n_layers: 8
     rrwp_steps: 20
 

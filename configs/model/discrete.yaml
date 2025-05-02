@@ -1,5 +1,5 @@
 # Model settings
-transition: 'marginal'                          # uniform, marginal, argmax, absorbing
+transition: 'marginal'                          # uniform, marginal, argmax, absorbfirst, absorbing
 model: 'graph_tf'
 n_layers: 5
 
