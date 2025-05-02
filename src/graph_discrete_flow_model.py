@@ -954,4 +954,4 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         # save the final results
         results_df.reset_index(inplace=True)
         results_df.set_index(["num_step", "omega"], inplace=True)
-        results_df.to_csv(f"search_stochasticity.csv")
+        results_df.to_csv(f"search_target_guidance.csv")
