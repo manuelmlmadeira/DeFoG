@@ -18,12 +18,12 @@ train:
     n_epochs: 50000
     batch_size: 32
     save_model: True
-    transition: 'absorbing'
 sample:
     time_distortion: 'uniform'
     omega: 0
     eta: 0
 model:
+    transition: 'absorbing'
     n_layers: 8
     rrwp_steps: 20
 
