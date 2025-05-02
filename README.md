@@ -71,14 +71,11 @@ python main.py +experiment=<dataset> dataset=<dataset>
 - **Planar:** `experiment=planar dataset=planar`
 - **SBM:** `experiment=sbm dataset=sbm`
 - **Tree:** `experiment=tree dataset=tree`
+- **Comm20:** `experiment=comm20 dataset=comm20`
 - **GuacaMol:** `guacamol dataset=guacamol`
 - **MOSES:** `moses dataset=moses`
 - **QM9 (with H):** `experiment=qm9_with_h dataset=qm9`
-- **Comm20:** `experiment=comm20 dataset=comm20`
-
-We also provide support for conditional generation on the TLS dataset:
-
-- **TLS (conditional):** `experiment=tls dataset=tls general.conditional=True`
+- **TLS (conditional):** `experiment=tls dataset=tls`
 
 ---
 
