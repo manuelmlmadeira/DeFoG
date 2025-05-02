@@ -52,7 +52,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         self.dataset_info = dataset_infos
         self.node_dist = dataset_infos.nodes_dist
         print("max num nodes: ", len(self.node_dist.prob) - 1)
-        print("min num nodes: ", torch.where(self.node_dist.prob > 0)[0][0])
+        print("min num nodes: ", torch.where(self.node_dist.prob > 0)[0][0].item())
 
         self.train_metrics = train_metrics
         self.sampling_metrics = sampling_metrics
