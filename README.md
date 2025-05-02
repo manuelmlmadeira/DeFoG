@@ -73,9 +73,12 @@ python main.py +experiment=<dataset> dataset=<dataset>
 - **Tree:** `experiment=tree dataset=tree`
 - **GuacaMol:** `guacamol dataset=guacamol`
 - **MOSES:** `moses dataset=moses`
-- **TLS (conditional):** `experiment=tls dataset=tls`
 - **QM9 (with H):** `experiment=qm9_with_h dataset=qm9`
 - **Comm20:** `experiment=comm20 dataset=comm20`
+
+We also provide support for conditional generation on the TLS dataset:
+
+- **TLS (conditional):** `experiment=tls dataset=tls general.conditional=True`
 
 ---
 
