@@ -19,7 +19,7 @@ train:
     batch_size: 32
     save_model: True
 sample:
-    time_distortion: 'uniform'
+    time_distortion: 'identity'
     omega: 0
     eta: 0
 model:
