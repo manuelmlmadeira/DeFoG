@@ -8,8 +8,8 @@
 
 <div align="center">
   <p float="left">
-    <img src="images/qm9_molecule_4.gif" width="263" style="margin-right: 20px;" />
-    <img src="images/sbm_molecule_14.gif" width="350" />
+    <img src="images/qm9_molecule_4.gif" style="width:39%; margin-right:5%;" />
+    <img src="images/sbm_molecule_14.gif" style="width:52%;" />
   </p>
 </div>
 
