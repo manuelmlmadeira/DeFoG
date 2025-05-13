@@ -6,12 +6,10 @@
 
 ![DeFoG: Visualization](images/defog.png)
 
-<div align="center">
-  <p float="left">
-    <img src="images/qm9_molecule_4.gif" width="263" style="margin-right: 20px;" />
-    <img src="images/sbm_molecule_14.gif" width="350" />
-  </p>
-</div>
+<p align="middle">
+  <img src="images/qm9_molecule_4.gif" width="39%" />
+  <img src="images/sbm_molecule_14.gif" width="52%" /> 
+</p>
 
 ---
 
