@@ -132,6 +132,22 @@ Once your dataset file is ready, update `main.py` to incorporate the new dataset
 
 Finally, if you are planning to introduce custom metrics, you can create a new file under the `metrics` directory.
 
+---
+
+## Checkpoints
+
+Checkpoints and their corresponding results are shared in the this [folder](https://drive.google.com/drive/folders/1TAzMf8uw7o4fORS9XKH4ywfnSnIjWoxo?usp=sharing).
+Currently, we provide checkpoints for the datasets with a checkmark (✅):
+
+- Synthetic datasets:
+  - Planar: ✅
+  - Tree: ✅
+  - SBM: ❌
+
+- Molecular datasets:
+   - QM9 (without H): ❌
+   - GuacaMol: ❌
+   - MOSES: ❌
 
 ---
 
