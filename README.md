@@ -72,15 +72,15 @@ python main.py +experiment=debug
 python main.py +experiment=<dataset> dataset=<dataset>
 ```
 
-- **QM9 (no H):** `experiment=qm9_no_h dataset=qm9`  
-- **Planar:** `experiment=planar dataset=planar`
-- **SBM:** `experiment=sbm dataset=sbm`
-- **Tree:** `experiment=tree dataset=tree`
-- **Comm20:** `experiment=comm20 dataset=comm20`
-- **GuacaMol:** `guacamol dataset=guacamol`
-- **MOSES:** `moses dataset=moses`
-- **QM9 (with H):** `experiment=qm9_with_h dataset=qm9`
-- **TLS (conditional):** `experiment=tls dataset=tls`
+- **QM9 (no H):** `+experiment=qm9_no_h dataset=qm9`  
+- **Planar:** `+experiment=planar dataset=planar`
+- **SBM:** `+experiment=sbm dataset=sbm`
+- **Tree:** `+experiment=tree dataset=tree`
+- **Comm20:** `+experiment=comm20 dataset=comm20`
+- **GuacaMol:** `+experiment=guacamol dataset=guacamol`
+- **MOSES:** `+experiment=moses dataset=moses`
+- **QM9 (with H):** `+experiment=qm9_with_h dataset=qm9`
+- **TLS (conditional):** `+experiment=tls dataset=tls`
 
 ---
 
