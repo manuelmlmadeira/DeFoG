@@ -16,11 +16,11 @@ general:
     sample_steps: 1000
 train:
     n_epochs: 50000
-    batch_size: 32
+    batch_size: 8
     save_model: True
     transition: 'absorbing'
 sample:
-    time_distortion: 'uniform'
+    time_distortion: 'identity'
     omega: 0
     eta: 0
 model:
