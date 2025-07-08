@@ -246,9 +246,9 @@ class SpectreGraphDataModule(AbstractDataModule):
 
 class SpectreDatasetInfos(AbstractDatasetInfos):
     def __init__(self, datamodule, dataset_config):
-        self.datamodule = datamodule
+        # self.datamodule = datamodule
         self.dataset_name = datamodule.inner.dataset_name
-        self.n_nodes = self.datamodule.node_counts()
-        self.node_types = self.datamodule.node_types()
-        self.edge_types = self.datamodule.edge_counts()
+        self.n_nodes = datamodule.node_counts()
+        self.node_types = datamodule.node_types()
+        self.edge_types = datamodule.edge_counts()
         super().complete_infos(self.n_nodes, self.node_types)

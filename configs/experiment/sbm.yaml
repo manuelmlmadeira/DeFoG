@@ -16,7 +16,7 @@ general:
     sample_steps: 1000
 train:
     n_epochs: 50000
-    batch_size: 32
+    batch_size: 8
     save_model: True
 sample:
     time_distortion: 'identity'
