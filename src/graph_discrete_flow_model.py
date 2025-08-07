@@ -269,7 +269,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
                 samples = pickle.load(f)
             # Set labels to None
             labels = [None] * len(samples)
-            return samples, None
+            return samples, labels
 
         # Otherwise, generate new samples
         if is_test:
