@@ -232,7 +232,7 @@ def main(cfg: DictConfig):
         logger=[],
     )
 
-    if not cfg.general.test_only and cfg.generated_path is None:
+    if not cfg.general.test_only and cfg.general.generated_path is None:
         trainer.fit(model, datamodule=datamodule, ckpt_path=cfg.general.resume)
     else:
         # Start by evaluating test_only_path
