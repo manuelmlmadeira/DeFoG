@@ -174,10 +174,10 @@ class TLSDataModule(AbstractDataModule):
 
 class TLSInfos(AbstractDatasetInfos):
     def __init__(self, datamodule):
-        self.datamodule = datamodule
-        self.n_nodes = self.datamodule.node_counts()
-        self.node_types = self.datamodule.node_types()
-        self.edge_types = self.datamodule.edge_counts()
+        # self.datamodule = datamodule
+        self.n_nodes = datamodule.node_counts()
+        self.node_types = datamodule.node_types()
+        self.edge_types = datamodule.edge_counts()
         super().complete_infos(self.n_nodes, self.node_types)
 
 
