@@ -533,13 +533,13 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         for t_int in tqdm(range(0, self.cfg.sample.sample_steps)):
             # this state
             t_array = t_int * torch.ones((batch_size, 1)).type_as(y)
-            t_norm = t_array / (self.cfg.sample.sample_steps + 1)
+            t_norm = t_array / (self.cfg.sample.sample_steps)
             if ("absorb" in self.cfg.model.transition) and (t_int == 0):
                 # to avoid failure mode of absorbing transition, add epsilon
                 t_norm = t_norm + 1e-6
             # next state
             s_array = t_array + 1
-            s_norm = s_array / (self.cfg.sample.sample_steps + 1)
+            s_norm = s_array / (self.cfg.sample.sample_steps)
 
             # using round for precision
             write_index = int(np.ceil(np.round(s_norm[0].item() / chain_time_unit, 6)))
