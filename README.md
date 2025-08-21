@@ -142,10 +142,10 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
 - Synthetic datasets:
   - Planar: ✅
   - Tree: ✅
-  - SBM: ❌
+  - SBM: ✅
 
 - Molecular datasets:
-   - QM9 (without H): ❌
+   - QM9 (without H): ✅
    - GuacaMol: ❌
    - MOSES: ❌
 
