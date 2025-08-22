@@ -13,6 +13,14 @@
 
 ---
 
+## 📝 Updates
+
+> Working with directed graphs? Consider using [DIRECTO](https://github.com/acarballocastro/DirectedGraphGen), a discrete flow matching framework for directed graph generation.
+
+> For an updated development environment with modernized dependencies, see the `updated_env` branch. The `main` branch remains the reference implementation, based on Python 3.9 and older package versions.
+
+
+
 ## 🚀 Installation
 
 We provide two alternative installation methods: Docker and Conda.
