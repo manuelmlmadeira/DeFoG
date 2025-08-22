@@ -77,7 +77,7 @@ python main.py +experiment=<dataset> dataset=<dataset>
 - **SBM:** `+experiment=sbm dataset=sbm`
 - **Tree:** `+experiment=tree dataset=tree`
 - **Comm20:** `+experiment=comm20 dataset=comm20`
-- **GuacaMol:** `+experiment=guacamol dataset=guacamol`
+- **Guacamol:** `+experiment=guacamol dataset=guacamol`
 - **MOSES:** `+experiment=moses dataset=moses`
 - **QM9 (with H):** `+experiment=qm9_with_h dataset=qm9`
 - **TLS (conditional):** `+experiment=tls dataset=tls`
@@ -146,7 +146,7 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
 
 - Molecular datasets:
    - QM9 (without H): ✅
-   - GuacaMol: ❌
+   - Guacamol: ❌
    - MOSES: ❌
 
 ---
