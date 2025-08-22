@@ -159,7 +159,7 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
 
 ---
 
-## 📌 TODO upon request
+## 📌 Upon request
 
 - ZINC / protein / EGO datasets  
 - FCD score for molecules
