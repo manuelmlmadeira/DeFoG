@@ -104,7 +104,7 @@ class TrainLossDiscrete(nn.Module):
             self.edge_loss.compute() if self.edge_loss.total_samples > 0 else -1
         )
         epoch_y_loss = (
-            self.train_y_loss.compute() if self.y_loss.total_samples > 0 else -1
+            self.y_loss.compute() if self.y_loss.total_samples > 0 else -1
         )
 
         to_log = {
