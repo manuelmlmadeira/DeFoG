@@ -2,6 +2,8 @@
 
 > A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows.  
 > Paper: https://arxiv.org/pdf/2410.04263
+> Poster: https://icml.cc/virtual/2025/poster/45644
+> Oral Presentation: https://icml.cc/virtual/2025/oral/47238
 
 
 ![DeFoG: Visualization](images/defog.png)
