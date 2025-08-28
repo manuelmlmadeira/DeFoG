@@ -178,10 +178,10 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
 ## 📚 Citation
 
 ```bibtex
-@article{qinmadeira2024defog,
+@inproceedings{qinmadeira2024defog,
   title     = {DeFoG: Discrete Flow Matching for Graph Generation},
   author    = {Qin, Yiming and Madeira, Manuel and Thanou, Dorina and Frossard, Pascal},
+  booktitle={International Conference on Machine Learning (ICML)},
   year      = {2024},
-  url       = {https://arxiv.org/abs/2410.04263}
 }
 ```
