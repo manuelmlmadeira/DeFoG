@@ -182,6 +182,6 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
   title     = {DeFoG: Discrete Flow Matching for Graph Generation},
   author    = {Qin, Yiming and Madeira, Manuel and Thanou, Dorina and Frossard, Pascal},
   booktitle={International Conference on Machine Learning (ICML)},
-  year      = {2024},
+  year      = {2025},
 }
 ```
