@@ -117,7 +117,7 @@ Note that if you run:
 ```bash
 python main.py +experiment=planar dataset=planar general.test_only=<path/to/checkpoint> 
 ```
-it will run with the sampling parameters (η, ω, sample distortion) we obtained after sampling optimization (see next section) that we reported in the paper.
+it will run with the sampling parameters (η, ω, sample distortion) that we obtained after sampling optimization (see next section) and are reported in the paper.
 
 ### Sampling optimization
 To search over the optimal inference hyperperameters (η, ω, distortion), use the `sample.search` flag, which will save a csv file with the results.
