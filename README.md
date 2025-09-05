@@ -1,7 +1,12 @@
 # DeFoG: Discrete Flow Matching for Graph Generation
 
-> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows.  
+> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows.
+
 > Paper: https://arxiv.org/pdf/2410.04263
+
+> Poster: https://icml.cc/virtual/2025/poster/45644
+
+> Oral Presentation: https://icml.cc/virtual/2025/oral/47238
 
 
 ![DeFoG: Visualization](images/defog.png)
@@ -12,6 +17,14 @@
 </p>
 
 ---
+
+## 📝 Updates
+
+> Working with directed graphs? Consider using [DIRECTO](https://github.com/acarballocastro/DIRECTO), a discrete flow matching framework for directed graph generation.
+
+> For an updated development environment with modernized dependencies, see the `updated_env` branch. The `main` branch remains the reference implementation, based on Python 3.9 and older package versions.
+
+
 
 ## 🚀 Installation
 
@@ -77,7 +90,7 @@ python main.py +experiment=<dataset> dataset=<dataset>
 - **SBM:** `+experiment=sbm dataset=sbm`
 - **Tree:** `+experiment=tree dataset=tree`
 - **Comm20:** `+experiment=comm20 dataset=comm20`
-- **GuacaMol:** `+experiment=guacamol dataset=guacamol`
+- **Guacamol:** `+experiment=guacamol dataset=guacamol`
 - **MOSES:** `+experiment=moses dataset=moses`
 - **QM9 (with H):** `+experiment=qm9_with_h dataset=qm9`
 - **TLS (conditional):** `+experiment=tls dataset=tls`
@@ -89,32 +102,37 @@ python main.py +experiment=<dataset> dataset=<dataset>
 Sampling from DeFoG is typically done in two steps:
 
 1. **Sampling Optimization** → find best sampling configuration  
-2. **Final Evaluation** → measure performance under the best configuration
+2. **Final Sampling** → sample and measure performance under the best configuration
 
 
-To perform 5 runs (mean ± std), set `general.num_sample_fold = 5`.
 
 For the rest of this section, we take Planar dataset as an example:
 
 ### Default sampling  
 ```bash
-python main.py +experiment=planar dataset=planar general.test_only=path/to/checkpoint sample.eta=0 sample.omega=0 sample.time_distortion=identity
+python main.py +experiment=planar dataset=planar general.test_only=<path/to/checkpoint> sample.eta=0 sample.omega=0 sample.time_distortion=identity
 ```
+
+Note that if you run:
+```bash
+python main.py +experiment=planar dataset=planar general.test_only=<path/to/checkpoint> 
+```
+it will run with the sampling parameters (η, ω, sample distortion) that we obtained after sampling optimization (see next section) and are reported in the paper.
 
 ### Sampling optimization
 To search over the optimal inference hyperperameters (η, ω, distortion), use the `sample.search` flag, which will save a csv file with the results.
 - **Non-grid search** (independent search for each component):  
   ```bash
-  python main.py +experiment=planar dataset=planar general.test_only=path/to/checkpoint sample.search=all
+  python main.py +experiment=planar dataset=planar general.test_only=<path/to/checkpoint> sample.search=all
   ```
 - **Component-wise**: set `sample.search=target_guidance | distortion | stochasticity` above.
 
 ⚠️ We set the default search intervals for each sampling parameter as we used in our experiments. You may want to adjust these intervals according to your needs.
 
-### Final evaluation  
+### Final sampling  
 Use optimal η, ω, time distortion resulting from the search:  
 ```bash
-python main.py +experiment=planar dataset=planar general.test_only=path/to/checkpoint sample.eta=<η> sample.omega=<ω> sample.time_distortion=<distortion>
+python main.py +experiment=planar dataset=planar general.test_only=<path/to/checkpoint> sample.eta=<η> sample.omega=<ω> sample.time_distortion=<distortion>
 ```
 
 ---
@@ -136,22 +154,13 @@ Finally, if you are planning to introduce custom metrics, you can create a new f
 
 ## Checkpoints
 
-Checkpoints and their corresponding results are shared in the this [folder](https://drive.google.com/drive/folders/1TAzMf8uw7o4fORS9XKH4ywfnSnIjWoxo?usp=sharing).
-Currently, we provide checkpoints for the datasets with a checkmark (✅):
+Checkpoints, along with their corresponding results and generated samples, are shared [here](https://drive.switch.ch/index.php/s/MG7y2EZoithAywE).
 
-- Synthetic datasets:
-  - Planar: ✅
-  - Tree: ✅
-  - SBM: ❌
-
-- Molecular datasets:
-   - QM9 (without H): ❌
-   - GuacaMol: ❌
-   - MOSES: ❌
+To run sampling and evaluate generation with a given checkpoint, set the `general.test_only` flag to the path of the checkpoint file (`.ckpt` file). To skip sampling and directly evaluate previously generated samples, set the flag `general.generated_path` to the path of the generated samples (`.pkl` file).
 
 ---
 
-## 📌 TODO upon request
+## 📌 Upon request
 
 - ZINC / protein / EGO datasets  
 - FCD score for molecules
@@ -170,10 +179,10 @@ Currently, we provide checkpoints for the datasets with a checkmark (✅):
 ## 📚 Citation
 
 ```bibtex
-@article{qinmadeira2024defog,
+@inproceedings{qinmadeira2024defog,
   title     = {DeFoG: Discrete Flow Matching for Graph Generation},
   author    = {Qin, Yiming and Madeira, Manuel and Thanou, Dorina and Frossard, Pascal},
-  year      = {2024},
-  url       = {https://arxiv.org/abs/2410.04263}
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2025},
 }
 ```
