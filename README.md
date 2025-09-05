@@ -1,6 +1,6 @@
 # DeFoG: Discrete Flow Matching for Graph Generation
 
-> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows.
+> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows. (Please update to the latest version. Recent fixes have been applied.)
 
 > Paper: https://arxiv.org/pdf/2410.04263
 
