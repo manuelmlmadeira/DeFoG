@@ -797,12 +797,9 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         """
 
         num_step_list = [5, 10, 50, 100, 1000]
-        if self.cfg.dataset.name in "qm9":
-            # num_step_list = [1, 5, 10, 50, 100, 500]
-            num_step_list = [5, 10]
-        if self.cfg.dataset.name == "guacamol":  # accelerate
-            num_step_list = [50]
-        if self.cfg.dataset.name == "moses":  # accelerate
+        if self.cfg.dataset.name == "qm9":
+            num_step_list = [1, 5, 10, 50, 100, 500]
+        if self.cfg.dataset.name in ["guacamol", 'moses']:  # accelerate
             num_step_list = [50]
 
         if self.cfg.sample.search == "all":
@@ -875,6 +872,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
             for eta in eta_list:
                 self.cfg.sample.sample_steps = num_step
                 self.cfg.sample.eta = eta
+                self.rate_matrix_designer.eta = eta
                 print(
                     f"############# Testing num steps: {num_step}, eta: {eta} #############"
                 )
@@ -929,6 +927,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
             for omega in omega_list:
                 self.cfg.sample.sample_steps = num_step
                 self.cfg.sample.omega = omega
+                self.rate_matrix_designer.omega = omega
                 print(
                     f"############# Testing num steps: {num_step}, omega: {omega} #############"
                 )
