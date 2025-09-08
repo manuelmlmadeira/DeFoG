@@ -70,6 +70,9 @@ class RateMatrixDesigner:
         # Stabilize rate matrices
         R_t_X, R_t_E = self.stabilize_rate_matrix(R_t_X, R_t_E, dfm_variables)
 
+        # # DEBUG
+        # import pdb; pdb.set_trace()
+
         return R_t_X, R_t_E
 
     def compute_dfm_variables(self, t, X_t_label, E_t_label, X_1_sampled, E_1_sampled):
@@ -136,6 +139,12 @@ class RateMatrixDesigner:
         # Final R^\star
         Rstar_t_X = Rstar_t_numer_X / Rstar_t_denom_X[:, :, None]  # (bs, n, dx)
         Rstar_t_E = Rstar_t_numer_E / Rstar_t_denom_E[:, :, :, None]  # (B, n, n, de)
+
+        # # Protect against NaN and too large values (DEBUG normalization)
+        # Rstar_t_X = torch.nan_to_num(Rstar_t_X, nan=0.0, posinf=0.0, neginf=0.0)
+        # Rstar_t_E = torch.nan_to_num(Rstar_t_E, nan=0.0, posinf=0.0, neginf=0.0)
+        # Rstar_t_X[Rstar_t_X > 1e5] = 0.0
+        # Rstar_t_E[Rstar_t_E > 1e5] = 0.0
 
         return Rstar_t_X, Rstar_t_E
 
@@ -296,6 +305,11 @@ class RateMatrixDesigner:
         E1_onehot = F.one_hot(E_1_sampled, num_classes=self.num_classes_E).float()
         mask_X = X_1_sampled.unsqueeze(-1) != X_t_label
         mask_E = E_1_sampled.unsqueeze(-1) != E_t_label
+        
+        # # pc
+        # X1_onehot = X1_onehot - self.limit_dist.X.unsqueeze(0).unsqueeze(0)
+        # E1_onehot = E1_onehot - self.limit_dist.E.unsqueeze(0).unsqueeze(0)
+        # # import pdb; pdb.set_trace()
 
         Rtg_t_numer_X = X1_onehot * self.omega * mask_X
         Rtg_t_numer_E = E1_onehot * self.omega * mask_E

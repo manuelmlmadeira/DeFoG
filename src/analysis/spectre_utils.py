@@ -28,7 +28,6 @@ from analysis.dist_helper import (
     compute_mmd,
     gaussian_emd,
     gaussian,
-    emd,
     gaussian_tv,
     disc,
 )
