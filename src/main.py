@@ -77,7 +77,8 @@ def main(cfg: DictConfig):
             domain_features=domain_features,
         )
 
-    elif dataset_config["name"] in ["qm9", "guacamol", "moses"]:
+
+    elif dataset_config["name"] in ["qm9", "guacamol", "moses", "zinc"]:
         from metrics.molecular_metrics import (
             TrainMolecularMetrics,
             SamplingMolecularMetrics,
@@ -115,6 +116,17 @@ def main(cfg: DictConfig):
             dataset_smiles = moses_dataset.get_smiles(
                 raw_dir=datamodule.train_dataset.raw_dir,
                 filter_dataset=cfg.dataset.filter,
+            )
+        elif "zinc" in dataset_config["name"]:
+            from datasets import zinc_dataset
+
+            datamodule = zinc_dataset.ZINCDataModule(cfg)
+            dataset_infos = zinc_dataset.ZINCinfos(datamodule=datamodule, cfg=cfg)
+            dataset_smiles = zinc_dataset.get_smiles(
+                cfg=cfg,
+                datamodule=datamodule,
+                dataset_infos=dataset_infos,
+                evaluate_datasets=False,
             )
         else:
             raise ValueError("Dataset not implemented")
