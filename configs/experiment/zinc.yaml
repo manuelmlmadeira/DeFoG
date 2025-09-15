@@ -6,9 +6,9 @@ general:
     remove_h: True
     resume: null
     test_only: null
-    check_val_every_n_epochs: 1
+    check_val_every_n_epochs: 4
     val_check_interval: null
-    sample_every_val: 4
+    sample_every_val: 2
     samples_to_generate: 256
     samples_to_save: 20
     chains_to_save: 5
