@@ -1,6 +1,6 @@
 # DeFoG: Discrete Flow Matching for Graph Generation
 
-> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows.
+> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows. (Please update to the latest version. Recent fixes have been applied.)
 
 > Paper: https://arxiv.org/pdf/2410.04263
 
@@ -104,7 +104,7 @@ Sampling from DeFoG is typically done in two steps:
 1. **Sampling Optimization** → find best sampling configuration  
 2. **Final Sampling** → sample and measure performance under the best configuration
 
-
+To perform 5 runs (mean ± std), set `general.num_sample_fold = 5`.
 
 For the rest of this section, we take Planar dataset as an example:
 
