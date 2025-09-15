@@ -94,6 +94,7 @@ python main.py +experiment=<dataset> dataset=<dataset>
 - **MOSES:** `+experiment=moses dataset=moses`
 - **QM9 (with H):** `+experiment=qm9_with_h dataset=qm9`
 - **TLS (conditional):** `+experiment=tls dataset=tls`
+- **ZINC:** `+experiment=zinc dataset=zinc`
 
 ---
 
@@ -162,7 +163,7 @@ To run sampling and evaluate generation with a given checkpoint, set the `genera
 
 ## 📌 Upon request
 
-- ZINC / protein / EGO datasets  
+- protein / EGO datasets  
 - FCD score for molecules
 - W&B sweeps for sampling optimization  
 
