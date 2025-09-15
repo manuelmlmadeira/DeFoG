@@ -800,7 +800,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         num_step_list = [5, 10, 50, 100, 1000]
         if self.cfg.dataset.name == "qm9":
             num_step_list = [1, 5, 10, 50, 100, 500]
-        if self.cfg.dataset.name in ["guacamol", 'moses']:  # accelerate
+        if self.cfg.dataset.name in ["guacamol", 'moses', 'zinc']:  # accelerate
             num_step_list = [50]
 
         if self.cfg.sample.search == "all":
