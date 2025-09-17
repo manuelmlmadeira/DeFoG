@@ -105,7 +105,7 @@ Sampling from DeFoG is typically done in two steps:
 1. **Sampling Optimization** → find best sampling configuration  
 2. **Final Sampling** → sample and measure performance under the best configuration
 
-To perform 5 runs (mean ± std), set `general.num_sample_fold = 5`.
+To perform 5 runs (mean ± std), set `general.num_sample_fold=5`.
 
 For the rest of this section, we take Planar dataset as an example:
 
