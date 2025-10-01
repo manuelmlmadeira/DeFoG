@@ -1,6 +1,6 @@
 # DeFoG: Discrete Flow Matching for Graph Generation
 
-> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows. (Please update to the latest version. Recent fixes have been applied.)
+> A PyTorch implementation of the DeFoG model for training and sampling discrete graph flows. (Please update to the latest commit. Recent fixes have been applied.)
 
 > Paper: https://arxiv.org/pdf/2410.04263
 
@@ -158,6 +158,8 @@ Finally, if you are planning to introduce custom metrics, you can create a new f
 Checkpoints, along with their corresponding results and generated samples, are shared [here](https://drive.switch.ch/index.php/s/MG7y2EZoithAywE).
 
 To run sampling and evaluate generation with a given checkpoint, set the `general.test_only` flag to the path of the checkpoint file (`.ckpt` file). To skip sampling and directly evaluate previously generated samples, set the flag `general.generated_path` to the path of the generated samples (`.pkl` file).
+
+(*Note*: The released checkpoints are retrained models from the public repository. Their performance is consistent with the paper’s findings, with minor variations attributable to training/sampling stochasticity.)
 
 ---
 
