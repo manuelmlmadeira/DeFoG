@@ -346,8 +346,8 @@ class GeneratedEdgesDistribution(Metric):
             _, edge_types = molecule
             mask = torch.ones_like(edge_types)
             mask = torch.triu(mask, diagonal=1).bool()
-            edge_types = edge_types[mask]
-            unique_edge_types, counts = torch.unique(edge_types, return_counts=True)
+            edge_types_ = edge_types[mask]
+            unique_edge_types, counts = torch.unique(edge_types_, return_counts=True)
             for type, count in zip(unique_edge_types, counts):
                 self.edge_dist[type] += count
 
@@ -389,15 +389,17 @@ class ValencyDistribution(Metric):
     def update(self, molecules) -> None:
         for molecule in molecules:
             _, edge_types = molecule
-            edge_types[edge_types == 4] = 1.5
-            edge_types[edge_types == 5] = 0.0  # zero out virtual states
-            valencies = torch.sum(edge_types, dim=0)
+            edge_types_ = edge_types.clone()
+            edge_types_[edge_types == 4] = 1.5
+            edge_types_[edge_types == 5] = 0.0  # zero out virtual states
+            valencies = torch.sum(edge_types_, dim=0)
             unique, counts = torch.unique(valencies, return_counts=True)
             for valency, count in zip(unique, counts):
                 self.edgepernode_dist[valency] += count
 
     def compute(self):
         return self.edgepernode_dist / torch.sum(self.edgepernode_dist)
+
 
 
 class HistogramsMAE(MeanAbsoluteError):
