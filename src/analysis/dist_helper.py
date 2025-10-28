@@ -3,55 +3,15 @@
 # Adapted from https://github.com/lrjconan/GRAN/ which in turn is adapted from https://github.com/JiaxuanYou/graph-generation
 #
 ###############################################################################
-import pyemd
 import numpy as np
 import concurrent.futures
 from functools import partial
 from scipy.linalg import toeplitz
 
 
-def emd(x, y, distance_scaling=1.0):
-    support_size = max(len(x), len(y))
-    d_mat = toeplitz(range(support_size)).astype(float)
-    distance_mat = d_mat / distance_scaling
-
-    # convert histogram values x and y to float, and make them equal len
-    x = x.astype(float)
-    y = y.astype(float)
-    if len(x) < len(y):
-        x = np.hstack((x, [0.0] * (support_size - len(x))))
-    elif len(y) < len(x):
-        y = np.hstack((y, [0.0] * (support_size - len(y))))
-
-    emd = pyemd.emd(x, y, distance_mat)
-    return emd
-
-
 def l2(x, y):
     dist = np.linalg.norm(x - y, 2)
     return dist
-
-
-def emd(x, y, sigma=1.0, distance_scaling=1.0):
-    """EMD
-    Args:
-        x, y: 1D pmf of two distributions with the same support
-        sigma: standard deviation
-    """
-    support_size = max(len(x), len(y))
-    d_mat = toeplitz(range(support_size)).astype(float)
-    distance_mat = d_mat / distance_scaling
-
-    # convert histogram values x and y to float, and make them equal len
-    x = x.astype(float)
-    y = y.astype(float)
-    if len(x) < len(y):
-        x = np.hstack((x, [0.0] * (support_size - len(x))))
-    elif len(y) < len(x):
-        y = np.hstack((y, [0.0] * (support_size - len(y))))
-
-    return np.abs(pyemd.emd(x, y, distance_mat))
-
 
 def gaussian_emd(x, y, sigma=1.0, distance_scaling=1.0):
     """Gaussian kernel with squared distance in exponential term replaced by EMD
@@ -71,7 +31,7 @@ def gaussian_emd(x, y, sigma=1.0, distance_scaling=1.0):
     elif len(y) < len(x):
         y = np.hstack((y, [0.0] * (support_size - len(y))))
 
-    emd = pyemd.emd(x, y, distance_mat)
+    emd = compute_emd(x, y, distance_mat)
     return np.exp(-emd * emd / (2 * sigma * sigma))
 
 

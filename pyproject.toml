@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defog"
+version = "1.0.0"
+description = "DeFoG: Discrete flow matching for graph generation"
+authors = [
+    { name = "Yiming Qin, Manuel Madeira et al."}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.setuptools.packages.find]
+where = ["."]
