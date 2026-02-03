@@ -27,8 +27,8 @@ train:
     time_distortion: 'polydec'
 sample:
     time_distortion: 'polydec'
-    omega: 0.
-    eta: 0.
+    omega: 0.1
+    eta: 300
 model:
     n_layers: 12
     type: 'discrete'

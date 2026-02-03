@@ -866,7 +866,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         The num_step_list is tunable based on requirements.
         """
         results_df = pd.DataFrame()
-        eta_list = [0.0, 5, 10, 25, 50, 100, 200]
+        eta_list = [0.0, 5, 10, 25, 50, 100, 200, 300, 500]
         # eta_list = [5, 10]
         for num_step in num_step_list:
             for eta in eta_list:
