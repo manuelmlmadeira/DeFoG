@@ -18,6 +18,10 @@
 
 ---
 
+⚠️ **NOTE**: This branch provides an **updated development environment** with **Python 3.11** and modernized dependencies. It also replaces the legacy `setup.py` with a `pyproject.toml` and adds support for Pixi for reproducible environment management.
+
+The main branch remains however the reference implementation used in the paper, based on Python 3.9 and older package versions.
+
 ## 📝 Updates
 
 > Working with directed graphs? Consider using [DIRECTO](https://github.com/acarballocastro/DIRECTO), a discrete flow matching framework for directed graph generation.

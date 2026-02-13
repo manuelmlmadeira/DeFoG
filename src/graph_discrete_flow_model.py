@@ -660,6 +660,7 @@ class GraphDiscreteFlowModel(pl.LightningModule):
         # step 2 - merge to the original formulation
         prob_X = step_probs_X.clone()
         prob_E = step_probs_E.clone()
+        # import pdb; pdb.set_trace()
 
         return prob_X, prob_E
 

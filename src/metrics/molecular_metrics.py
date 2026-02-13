@@ -400,6 +400,7 @@ class ValencyDistribution(Metric):
         return self.edgepernode_dist / torch.sum(self.edgepernode_dist)
 
 
+
 class HistogramsMAE(MeanAbsoluteError):
     def __init__(self, target_histogram, **kwargs):
         """Compute the distance between histograms."""
