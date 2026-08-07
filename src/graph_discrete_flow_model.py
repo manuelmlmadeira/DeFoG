@@ -711,17 +711,17 @@ class GraphDiscreteFlowModel(pl.LightningModule):
             noisy_data["y_t"] = uncond_y
 
             extra_data = self.compute_extra_data(noisy_data)
-            pred = self.forward(noisy_data, extra_data, node_mask)
+            pred_uncond = self.forward(noisy_data, extra_data, node_mask)
 
-            pred_X = F.softmax(pred.X, dim=-1)  # bs, n, d0
-            pred_E = F.softmax(pred.E, dim=-1)  # bs, n, n, d0
+            uncond_X = F.softmax(pred_uncond.X, dim=-1)  # bs, n, d0
+            uncond_E = F.softmax(pred_uncond.E, dim=-1)  # bs, n, n, d0
 
             R_t_X_uncond, R_t_E_uncond = (
                 self.rate_matrix_designer.compute_graph_rate_matrix(
                     t,
                     node_mask,
                     G_t,
-                    G_1_pred,
+                    (uncond_X, uncond_E),
                 )
             )
 
